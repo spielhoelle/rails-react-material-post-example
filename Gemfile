@@ -55,4 +55,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'jquery-rails'
 gem 'react-rails'
 gem 'showdown-rails'
-
+gem 'haml-rails'

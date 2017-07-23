@@ -41,11 +41,12 @@ GEM
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
     arel (8.0.0)
-    babel-source (5.8.35)
-    babel-transpiler (0.7.0)
-      babel-source (>= 4.0, < 6)
-      execjs (~> 2.0)
+    autoprefixer-rails (7.1.1.2)
+      execjs
     bindex (0.5.0)
+    bootstrap (4.0.0.alpha6)
+      autoprefixer-rails (>= 6.0.3)
+      sass (>= 3.4.19)
     builder (3.2.3)
     byebug (9.0.6)
     capybara (2.14.4)
@@ -65,7 +66,6 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
-    connection_pool (2.2.1)
     erubi (1.6.1)
     erubis (2.7.0)
     execjs (2.7.0)
@@ -144,13 +144,6 @@ GEM
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    react-rails (1.10.0)
-      babel-transpiler (>= 0.7.0)
-      coffee-script-source (~> 1.8)
-      connection_pool
-      execjs
-      railties (>= 3.2)
-      tilt
     ruby_dep (1.5.0)
     ruby_parser (3.9.0)
       sexp_processor (~> 4.1)
@@ -170,9 +163,6 @@ GEM
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
     sexp_processor (4.9.0)
-    showdown-rails (0.1.0)
-      actionpack (>= 3.1)
-      railties (>= 3.1)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -212,6 +202,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap (~> 4.0.0.alpha6)
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
@@ -221,10 +212,8 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   puma (~> 3.7)
   rails (~> 5.1.2)
-  react-rails
   sass-rails (~> 5.0)
   selenium-webdriver
-  showdown-rails
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3
@@ -234,4 +223,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.14.5
+   1.14.6

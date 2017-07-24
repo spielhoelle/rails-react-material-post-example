@@ -47,8 +47,7 @@ var PostBox = React.createClass({
   },
   render: function() {
     return (
-      <div className="postBox">
-        <h1>Posts</h1>
+      <div className="postBox my-3">
         <PostForm title="title" text="text" onPostSubmit={this.handlePostSubmit} />
         <PostList data={this.state.data} />
       </div>

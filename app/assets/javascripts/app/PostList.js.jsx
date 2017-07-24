@@ -14,7 +14,7 @@ export class PostList extends React.Component {
       );
     });
     return (
-      <div className="postList card-columns">
+      <div className="postList card-columns row my-3 ">
         {postNodes}
       </div>
     );

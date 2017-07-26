@@ -1,5 +1,5 @@
 var React = require('react');
-
+import { Button, Card, Row, Col, Input, Icon } from 'react-materialize';
 export class PostForm extends React.Component {
  constructor(props) {
     super(props);
@@ -20,24 +20,14 @@ export class PostForm extends React.Component {
 
   render() {
     return (
-      <div className="card">
-        <h3 className="card-header">Add a Post</h3>
-        <div className="card-block">
-          <form className="row postForm " onSubmit={this.handleSubmit}>
-            <div className="form-group col-sm-4">
-              <label className="control-label" forName="titleInput">Title</label>
-              <input type="text" id="titleInput" className="form-control" placeholder="Your name" ref={this.props.title} />
-            </div>
-            <div className="form-group col-sm-4">
-              <label className="control-label" forName="postInput">Post</label>
-              <textarea className="form-control" id="postInput" rows="3" placeholder="Say something..." ref={this.props.text} />
-            </div>
-            <div className="form-group col-sm-4 mt-5">
-              <input type="submit" className="btn btn-primary" value="Post" />
-            </div>
-          </form>
-        </div>
-      </div>
+      <Row>
+        <form className="row postForm " onSubmit={this.handleSubmit}>
+          <Input s={4} label="First Name" ref={this.props.title} />
+          <Input s={4} label="Last Name" ref={this.props.text} />
+          <Button s={4} waves='light'>submit</Button>
+
+        </form>
+      </Row>
     );
   }
 };

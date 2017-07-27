@@ -21,10 +21,10 @@ export class PostForm extends React.Component {
   render() {
     return (
       <Row>
-        <form className="row postForm " onSubmit={this.handleSubmit}>
-          <Input s={4} label="First Name" ref={this.props.title} />
-          <Input s={4} label="Last Name" ref={this.props.text} />
-          <Button s={4} waves='light'>submit</Button>
+        <form className="postForm" onSubmit={this.handleSubmit}>
+          <Input className="inline" label="Name" ref={this.props.title} />
+          <Input className="inline" label="Content" ref={this.props.text} />
+          <Button waves='light'>submit</Button>
 
         </form>
       </Row>

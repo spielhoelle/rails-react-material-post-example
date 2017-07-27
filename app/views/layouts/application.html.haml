@@ -10,7 +10,9 @@
     = stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css'
 
   %body.mdc-typography--body1
+    #navigation
     = yield
+    #footer
 
     = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js', "data-turbolinks-eval" => false
     = javascript_include_tag 'bundle.js', "data-turbolinks-eval" => false

@@ -18,7 +18,6 @@ var PostBox = React.createClass({
   },
   handlePostSubmit: function(post) {
     var posts = this.state.data;
-    posts.push(post);
     this.setState({data: posts}, function() {
       // `setState` accepts a callback. To avoid (improbable) race condition,
       // `we'll send the ajax request right after we optimistically set the new
@@ -29,6 +28,8 @@ var PostBox = React.createClass({
         type: 'POST',
         data: { post: post },
         success: function(data) {
+          posts.push(data);
+          this.setState({data: posts});
         }.bind(this),
         error: function(xhr, status, err) {
           posts.pop();
@@ -67,7 +68,6 @@ var PostBox = React.createClass({
 
   componentDidMount: function() {
     this.loadPostsFromServer();
-    this.loadPostsFromServer
   },
 
   render: function() {

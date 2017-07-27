@@ -7,14 +7,14 @@ export class PostForm extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    var title = this.refs.title.value.trim();
-    var text = this.refs.text.value.trim();
+    var title = this.refs.title.state.value.trim();
+    var text = this.refs.text.state.value.trim();
     if (!text || !title) {
       return;
     }
     this.props.onPostSubmit({title: title, text: text});
-    this.refs.title.value = '';
-    this.refs.text.value = '';
+    document.getElementById(this.refs.title._id).value = ""
+    document.getElementById(this.refs.text._id).value = ""
     return;
   }
 

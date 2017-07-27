@@ -7,7 +7,8 @@ export class Post extends React.Component {
     return (
       <Col m={6} s={12}  >
         <Card className='post darken-1' textClassName='' title={this.props.title}>
-          <p className="card-text">{this.props.children}</p>
+          <p className="card-text">{this.props.text}</p>
+          {this.props.children}
         </Card>
       </Col>
     );

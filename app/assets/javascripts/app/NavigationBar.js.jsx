@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Navbar, NavItem } from 'react-materialize';
+import { Navbar, NavItem, Icon } from 'react-materialize';
 
 var NavBox = React.createClass({
   getInitialState: function() {
@@ -13,8 +13,10 @@ var NavBox = React.createClass({
   render: function() {
     return (
       <Navbar brand='logo' right>
-	<NavItem href='get-started.html'>Getting started</NavItem>
-	<NavItem href='components.html'>Components</NavItem>
+	<NavItem href='get-started.html'><Icon>search</Icon></NavItem>
+	<NavItem href='get-started.html'><Icon>view_module</Icon></NavItem>
+	<NavItem href='get-started.html'><Icon>refresh</Icon></NavItem>
+	<NavItem href='get-started.html'><Icon>more_vert</Icon></NavItem>
       </Navbar>
     );
   }

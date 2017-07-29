@@ -1,8 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+
 import PostList from './PostList.js.jsx';
 import PostForm from './PostForm.js.jsx';
-
 export class PostBox extends React.Component {
   constructor(props) {
     super(props);
@@ -77,13 +76,4 @@ export class PostBox extends React.Component {
   }
 };
 
-$(document).on("turbolinks:load", function() {
-  var $content = $("#content");
-  if ($content.length > 0) {
-    ReactDOM.render(
-      <PostBox url="posts.json" />,
-      document.getElementById('content')
-    );
-  }
-})
 module.exports = PostBox

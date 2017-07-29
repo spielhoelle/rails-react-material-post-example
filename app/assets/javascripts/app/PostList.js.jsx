@@ -4,13 +4,32 @@ import Post from './Post.js.jsx';
 
 export class PostList extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {data: this.props.data};
+    this.updateItems = this.updateItems.bind(this)
+  }
+  
+
+  updateItems(item) {
+    $.ajax({
+      type: "PUT",
+      dataType: 'json',
+      url: "/posts/" + item.id,
+      data: {post: item},
+      success: function(data) {
+        this.props.onUpdate(item)
+      }.bind(this),
+      failure: function() {
+        console.error(status, err.toString());
+      }
+    });
+  }
+
   render() {
     var postNodes = this.props.data.map(function(post, index) {
       return (
-        // `key` is a React-specific concept and is not mandatory for the
-        // purpose of this tutorial. if you're curious, see more here:
-        // http://facebook.github.io/react/docs/multiple-components.html#dynamic-children
-        <Post title={post.title} text={post.text} key={post.id} handleDelete={(e) => { this.props.handleDelete(post) }} >
+        <Post title={post.title} onUpdateItems={this.updateItems} filterPosts={this.props.filterPostList} text={post.text} key={post.id} id={post.id}  >
         </Post>
       );
     }, this);

@@ -4,7 +4,7 @@ import { Slider, Slide } from 'react-materialize';
 var SliderBox = React.createClass({
   render: function() {
     return (
-      <Slider interval="1000">
+      <Slider >
         <Slide
           src="http://lorempixel.com/580/250/nature/1"
           title="This is our big Tagline!">
@@ -26,10 +26,10 @@ var SliderBox = React.createClass({
     )
     }
   })
-  $(document).on("turbolinks:load", function() {
-    ReactDOM.render(
-      <SliderBox />,
-      document.getElementById('slider')
-    );
-})
+  //$(document).on("turbolinks:load", function() {
+    //ReactDOM.render(
+      //<SliderBox />,
+      //document.getElementById('slider')
+    //);
+//})
 

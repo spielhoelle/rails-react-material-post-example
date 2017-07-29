@@ -3,8 +3,15 @@ import ReactDOM from 'react-dom';
 import PostList from './PostList.js.jsx';
 import PostForm from './PostForm.js.jsx';
 
-var PostBox = React.createClass({
-  loadPostsFromServer: function() {
+export class PostBox extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {data: []};
+    this.onFilterPosts = this.onFilterPosts.bind(this);
+    this.onUpdate = this.onUpdate.bind(this);
+  }
+
+  loadPostsFromServer() {
     $.ajax({
       url: this.props.url,
       dataType: 'json',
@@ -15,13 +22,11 @@ var PostBox = React.createClass({
         console.error(this.props.url, status, err.toString());
       }.bind(this)
     });
-  },
-  handlePostSubmit: function(post) {
+  }
+
+  handlePostSubmit(post) {
     var posts = this.state.data;
     this.setState({data: posts}, function() {
-      // `setState` accepts a callback. To avoid (improbable) race condition,
-      // `we'll send the ajax request right after we optimistically set the new
-      // `state.
       $.ajax({
         url: this.props.url,
         dataType: 'json',
@@ -38,49 +43,39 @@ var PostBox = React.createClass({
         }.bind(this)
       });
     });
-  },
+  }
 
-  filterPosts: function(id) {
+  onFilterPosts(id) {
     var newItems = this.state.data.filter((post) => { 
       return id != post.id;
     }); 
     this.setState({ data: newItems });
-  },
+  }
 
-  handlePostDelete: function(post){
-    $.ajax({
-      type: "DELETE",
-      dataType: 'json',
-      url: "/posts/" + post.id,
-      success: function(data) {
-        this.filterPosts(post.id);
-      }.bind(this),
-      failure: function() {
-        console.error(status, err.toString());
+  onUpdate(item) {
+    var items = this.state.data
+    items.filter((i, index) => {
+      if ( item.id === i.id ) {
+        items[index] = item
       }
     });
+    this.setState({data: items });
+  }
 
-  },
-
-  getInitialState: function() {
-    return {data: []};
-  },
-
-  componentDidMount: function() {
+  componentDidMount() {
     this.loadPostsFromServer();
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <div className="postBox my-3">
         <h3>Write a post</h3>
-        <PostForm title="title" text="text" onPostSubmit={this.handlePostSubmit} />
-        <PostList data={this.state.data} handleDelete={this.handlePostDelete} />
+        <PostForm title="title" text="text" onPostSubmit={this.handlePostSubmit.bind(this)} />
+        <PostList data={this.state.data} onUpdate={this.onUpdate} filterPostList={this.onFilterPosts}  />
       </div>
     );
   }
-});
-
+};
 
 $(document).on("turbolinks:load", function() {
   var $content = $("#content");
@@ -91,3 +86,4 @@ $(document).on("turbolinks:load", function() {
     );
   }
 })
+module.exports = PostBox

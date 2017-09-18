@@ -1,33 +1,40 @@
 var React = require('react');
-import { Button, Card, Row, Col, Input } from 'react-materialize';
+const enhanceWithClickOutside = require('react-click-outside');
+import { Card, Row, Col, Input } from 'react-materialize';
+
 export class Post extends React.Component {
   constructor(props) {
     super(props);
     this.state = {editing: null};
     this.handleEdit = this.handleEdit.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
-
   }
+
+  handleClickOutside() {
+    this.setState({ editing: null });
+  }
+  
   renderItemOrEditField( post ) {
-    if ( this.state.editing === post.id ) {
+    if ( this.state.editing === true ) {
       return ( 
-          <Card className='post darken-1' textClassName='' actions={[<a key={this.props.id} onClick={this.handleUpdate}>Save</a>]}>
+          <Card className='post darken-1 hoverable' textClassName='' actions={[<a key={this.props.id} onClick={this.handleUpdate}>Save</a>]}>
             <Row>
-            <Input className="inline" label="Name" ref="title" defaultValue={this.props.title} />
-            <Input className="inline" label="Content" ref="text" defaultValue={this.props.text}/>
-          </Row>
+              <Input className="inline" label="Name" ref="title" defaultValue={this.props.title} />
+              <Col s={12} className="input-field">
+                <label className="active" for={this.props.id}>Content</label>
+                <textarea className="materialize-textarea" id="input_2" ref="text"  defaultValue={this.props.text}/>
+            </Col>
+            </Row>
           </Card>
         )
       } else {
         return (
           <Card 
-            className='post darken-1'
+            onClick={(e) => { this.handleEdit(post) }}
+            className='post darken-1 hoverable'
             textClassName=''
             title={this.props.title}
-            actions={[
-              <a key={this.props.title} onClick={(e) => { this.handleDelete(e) }}>Delete</a>,
-              <a key={this.props.id} onClick={(e) => { this.handleEdit(post) }}> edit</a>
-              ]}>
+            actions={[ <a key={this.props.title} onClick={(e) => { this.handleDelete(e) }}>Delete</a>, ]}>
             <p ref="cardtext" className="card-text">{this.props.text}</p>
           </Card>
 
@@ -44,16 +51,16 @@ export class Post extends React.Component {
       }.bind(this),
       failure: function() {
         console.error(status, err.toString());
-      }
+      }.bind(this)
     });
 
   }
   handleUpdate(e){
-    event.stopPropagation()
-    event.stopImmediatePropagation();
+    console.log(e)
+    console.log(this)
     var id = this.props.id;
     var title = this.refs.title.state.value.trim();
-    var text = this.refs.text.state.value.trim();
+    var text = this.refs.text.value.trim();
     if (!text || !title) {
       return;
     }
@@ -64,16 +71,16 @@ export class Post extends React.Component {
   
   handleEdit(post){ 
     event.stopPropagation();
-    this.setState( { editing: post.id } );
+    this.setState( { editing: true } );
   }
 
   render() {
     return (
-      <Col m={6} s={12}>
+      <Col l={4} m={6} s={12}>
         {this.renderItemOrEditField(this.props)}
       </Col>
     );
   }
 };
-module.exports = Post; 
 
+module.exports = enhanceWithClickOutside(Post);

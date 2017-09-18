@@ -10,7 +10,6 @@ export class PostList extends React.Component {
     this.updateItems = this.updateItems.bind(this)
   }
   
-
   updateItems(item) {
     $.ajax({
       type: "PUT",

@@ -1,24 +1,13 @@
-# README
+# RMR - ReactMaterialRails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Example implementation of react/material frontend connected to a rails backend mostly per ajax CRUD calls.
 
-Things you may want to cover:
+![react-material-rails-example](/app/assets/images/screenshot.png?raw=true "ReactMaterialRails")
 
-* Ruby version
+## Installation
 
-* System dependencies
+Migrate database `rake db migrate`
 
-* Configuration
+Install packages `npm install`
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Start server `bundle exec rails server`

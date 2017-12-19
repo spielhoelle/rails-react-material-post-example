@@ -1,5 +1,7 @@
 # RMR - ReactMaterialRails
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/spielhoelle/rails-react-material-post-example.svg)](https://greenkeeper.io/)
+
 Example implementation of react/material frontend connected to a rails backend mostly per ajax CRUD calls.
 
 ![react-material-rails-example](/app/assets/images/screenshot.png?raw=true "ReactMaterialRails")
